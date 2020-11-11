@@ -1,0 +1,43 @@
+---
+project_name: rabdis
+before:
+  hooks:
+    - go mod download
+    - go generate ./...
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    ldflags:
+      - -s -w -X github.com/julienbreux/rabdis/pkg/version.Version={{.Version}} -X github.com/julienbreux/rabdis/pkg/version.Commit={{.Commit}} -X github.com/julienbreux/rabdis/pkg/version.RawDate={{.Date}}
+archives:
+  - replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
+checksum:
+  name_template: checksums.txt
+snapshot:
+  name_template: "{{ .Tag }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+brews:
+  - name: rabdis
+    github:
+      owner: JulienBreux
+      name: rabdis-homebrew
+    commit_author:
+      name: Julien Breux
+      email: julien@golang.fr
+    folder: Formula
+    homepage: https://github.com/julienbreux/rabdis/
+    description: 🐰 Rabdis – Play with redis keys from RabbitMQ messages
+    test: system "rabdis version"

@@ -1,0 +1,16 @@
+.github
+.vscode
+bin
+docs
+.editorconfig
+.env.dist
+.gitignore
+.golangci.yml
+.goreleaser.yml
+docker-compose.yml
+Dockerfile
+*.code-workspace
+rabdis.yaml
+rabdis.yaml.dist
+README.md
+todo.txt

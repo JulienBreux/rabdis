@@ -1,0 +1,30 @@
+---
+# Services
+services:
+  # RabbitMQ service
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabdis-rabbitmq
+    environment:
+      RABBITMQ_ERLANG_COOKIE: default
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_VHOST: /
+    ports:
+      - 15672:15672  # Management
+      - 5672:5672    # Protocol
+    networks:
+      - backend
+
+  # Redis service
+  redis:
+    image: redis:5-alpine
+    container_name: rabdis-redis
+    ports:
+        - 6379:6379  # Protocol
+    networks:
+      - backend
+
+# Networks
+networks:
+  backend: {}

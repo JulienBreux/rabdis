@@ -1,0 +1,17 @@
+---
+version: 1
+
+rules:
+- rabbitmq:
+    exchange:
+      name: users
+    bind:
+      routingKey: user.deleted
+    queue:
+      name: auth.users.deleted
+  redis:
+    actions:
+    - key: 'user::{id}'
+      action: delete
+    - key: 'users::deleted'
+      action: increment

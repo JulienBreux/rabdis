@@ -1,0 +1,13 @@
+# Editors
+.vscode
+*.code-workspace
+
+# Test binary, built with `go test -c`
+*.test
+bin
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Configuration
+rabdis.yaml
