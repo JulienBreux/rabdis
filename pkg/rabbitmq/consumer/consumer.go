@@ -6,8 +6,6 @@ import (
 	"github.com/streadway/amqp"
 )
 
-const autoAck = false
-
 // Consumer represents the consumer interface
 type Consumer interface {
 	Start(c *amqp.Connection) error
@@ -61,7 +59,7 @@ func (c *consumer) Start(conn *amqp.Connection) error {
 	}
 
 	// Consume
-	deliveryChan, err := ch.Consume(c.o.Queue, autoAck)
+	deliveryChan, err := ch.Consume(c.o.Queue, c.o.AutoAck)
 	if err != nil {
 		// TODO: Specific error
 		return err

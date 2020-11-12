@@ -14,10 +14,13 @@ type Options struct {
 	Exchange exchange.Exchange
 	Queue    queue.Queue
 	Bind     bind.Bind
+	AutoAck  bool
 }
 
 func newOptions(opts ...Option) (*Options, error) {
-	opt := Options{}
+	opt := Options{
+		AutoAck: false,
+	}
 
 	for _, o := range opts {
 		o(&opt)
@@ -44,5 +47,12 @@ func Queue(opt queue.Queue) Option {
 func Bind(opt bind.Bind) Option {
 	return func(o *Options) {
 		o.Bind = opt
+	}
+}
+
+// AutoAck returns auto acknowledge option
+func AutoAck(opt bool) Option {
+	return func(o *Options) {
+		o.AutoAck = opt
 	}
 }
