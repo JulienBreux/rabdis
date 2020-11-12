@@ -1,32 +1,35 @@
-x (A) 2020-11-08,2020-11-08 Backoff Redis +MVP @Julien
-x (A) 2020-11-08,2020-11-08 Backoff RabbitMQ +MVP @Julien
-x (A) 2020-11-08,2020-11-08 Read config file from RABDIS_CONFIG +MVP @Julien
-x (A) 2020-11-08,2020-11-08 Start consumers from config +MVP @Julien
-x (A) 2020-11-08,2020-11-08 On message do action on redis +MVP @Julien
-x (A) 2020-11-08,2020-11-08 Improve subscribers in RabbitMQ connection +MVP @Julien
-x (A) 2020-11-08,2020-11-08 Hard code RabbitMQ in Rabdis manager +MVP @Julien
-x (A) 2020-11-08,2020-11-08 Hard code Redis in Rabdis manager +MVP @Julien
-x (C) 2020-11-08,2020-11-08 Extend queue configuration +feature @Julien
-x (C) 2020-11-08,2020-11-08 Extend exchange configuration +feature @Julien
-x (C) 2020-11-08,2020-11-08 Extend binding configuration +feature @Julien
-x (A) 2020-11-10,2020-11-11 Manage template in Redis actions key +MVP @Julien
-x (A) 2020-11-11,2020-11-11 Manage redis actions +MVP @Julien
-x (A) 2020-11-11, 2020-11-11 Type redis action +MVP @Julien
-x (A) 2020-11-11 Add route /metrics +MVP @Julien
-x (B) Create docker image +MVP @Julien
-x (B) Create Helm Chart +MVP @Julien
-(B) Create functional testing +MVP @Julien
+x (A) 2020-11-08,2020-11-08 Backoff Redis +MVP @JulienBreux
+x (A) 2020-11-08,2020-11-08 Backoff RabbitMQ +MVP @JulienBreux
+x (A) 2020-11-08,2020-11-08 Read config file from RABDIS_CONFIG +MVP @JulienBreux
+x (A) 2020-11-08,2020-11-08 Start consumers from config +MVP @JulienBreux
+x (A) 2020-11-08,2020-11-08 On message do action on redis +MVP @JulienBreux
+x (A) 2020-11-08,2020-11-08 Improve subscribers in RabbitMQ connection +MVP @JulienBreux
+x (A) 2020-11-08,2020-11-08 Hard code RabbitMQ in Rabdis manager +MVP @JulienBreux
+x (A) 2020-11-08,2020-11-08 Hard code Redis in Rabdis manager +MVP @JulienBreux
+x (C) 2020-11-08,2020-11-08 Extend queue configuration +feature @JulienBreux
+x (C) 2020-11-08,2020-11-08 Extend exchange configuration +feature @JulienBreux
+x (C) 2020-11-08,2020-11-08 Extend binding configuration +feature @JulienBreux
+x (A) 2020-11-10,2020-11-11 Manage template in Redis actions key +MVP @JulienBreux
+x (A) 2020-11-11,2020-11-11 Manage redis actions +MVP @JulienBreux
+x (A) 2020-11-11, 2020-11-11 Type redis action +MVP @JulienBreux
+x (A) 2020-11-11 Add route /metrics +MVP @JulienBreux
+x (B) Create docker image +MVP @JulienBreux
+x (B) Create Helm Chart +MVP @JulienBreux
+(B) Create functional testing +MVP @JulienBreux
 
-(A) 2020-11-11 Manage redis disconnection (non-ack) +MVP @Julien
-(B) Documentation asciinema +doc +MVP @Julien
-(B) Documentation website +doc +MVP @Julien
+(A) 2020-11-11, Manage redis disconnection (non-ack) +MVP @JulienBreux
+(B) Documentation asciinema +doc +MVP @JulienBreux
+(B) Documentation website +doc +MVP @JulienBreux
+(B) Add missing unit tests for pkg/metrics @JulienBreux
+(B) Add missing unit tests for pkg/redis @JulienBreux
+(B) Add missing unit tests for pkg/rabbitmq @JulienBreux
 
-(C) Add more metrics (messages ok/nok, actions ok/nok) +feature +action @Julien
-(C) Add action conditions +feature +action @Julien
-(C) New command config-check +feature +command +chore @Julien
-(C) Decision when action skipped to nack? +chore +feature @Julien
-(C) Decision when action skipped to nack? +chore @Julien
-(C) Replace actionIndex and ruleIndex by using context +chore +improve @Julien
-(C) Create clean errors on config (most readable and reliable) @Julien
+(C) Add more metrics (messages ok/nok, actions ok/nok) +feature +action @JulienBreux
+(C) Add action conditions +feature +action @JulienBreux
+(C) New command config-check +feature +command +chore @JulienBreux
+(C) Decision when action skipped to nack? +chore +feature @JulienBreux
+(C) Decision when action skipped to nack? +chore @JulienBreux
+(C) Replace actionIndex and ruleIndex by using context +chore +improve @JulienBreux
+(C) Create clean errors on config (most readable and reliable) @JulienBreux
 
-(D) Benchmark +chore @Julien
+(D) Benchmark +chore @JulienBreux
