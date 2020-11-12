@@ -36,11 +36,9 @@ func New(opts ...Option) (RabbitMQ, error) {
 		return nil, err
 	}
 
-	r := &rabbitmq{
+	return &rabbitmq{
 		o: o,
-	}
-
-	return r, nil
+	}, nil
 }
 
 // Connect connects to the RabbitMQ server
