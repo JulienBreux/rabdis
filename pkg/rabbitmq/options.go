@@ -86,7 +86,7 @@ func Password(password string) Option {
 	}
 }
 
-// VirtualHost return virtual host option
+// VirtualHost returns virtual host option
 func VirtualHost(virtualHost string) Option {
 	return func(o *Options) {
 		o.VirtualHost = virtualHost
