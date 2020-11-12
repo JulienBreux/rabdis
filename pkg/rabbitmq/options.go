@@ -15,13 +15,12 @@ type Option func(*Options)
 type Options struct {
 	Logger logger.Logger `ignored:"true" json:"-"`
 
-	Host         string `default:"0.0.0.0" envconfig:"HOST"`
-	Port         int    `default:"5672" envconfig:"PORT"`
-	Username     string `default:"guest" envconfig:"USERNAME"`
-	Password     string `default:"guest" envconfig:"PASSWORD"`
-	VirtualHost  string `default:"/" envconfig:"VHOST"`
-	ConnAttempts int    `default:"5" envconfig:"CONN_ATTEMPTS"`
-	ConnTimeout  int    `default:"10" envconfig:"CONN_TIMEOUT"`
+	Host        string `default:"0.0.0.0" envconfig:"HOST"`
+	Port        int    `default:"5672" envconfig:"PORT"`
+	Username    string `default:"guest" envconfig:"USERNAME"`
+	Password    string `default:"guest" envconfig:"PASSWORD"`
+	VirtualHost string `default:"/" envconfig:"VHOST"`
+	ConnTimeout int    `default:"10" envconfig:"CONN_TIMEOUT"`
 
 	InstName    string `default:"unknown" envconfig:"INST_NAME"`
 	InstVersion string `default:"unknown" envconfig:"INST_VERSION"`
@@ -91,13 +90,6 @@ func Password(password string) Option {
 func VirtualHost(virtualHost string) Option {
 	return func(o *Options) {
 		o.VirtualHost = virtualHost
-	}
-}
-
-// ConnAttempts returns connection attempts option
-func ConnAttempts(connAttempts int) Option {
-	return func(o *Options) {
-		o.ConnAttempts = connAttempts
 	}
 }
 
