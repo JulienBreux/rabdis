@@ -20,9 +20,6 @@ type RabbitMQ interface {
 	OnMessage(message.OnMessageHandler, ...consumer.Option) error
 }
 
-// OnConnectHandler represents a handler when RabbitMQ is connected
-type OnConnectHandler func(RabbitMQ) error
-
 // rabbitmq represents the internal rabbitmq structure
 type rabbitmq struct {
 	o *Options
