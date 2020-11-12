@@ -22,7 +22,7 @@ type Options struct {
 	Password string `default:"" envconfig:"PASSWORD"`
 	Database int    `default:"0" envconfig:"DATABASE"`
 
-	PingDelay time.Duration `default:"2s" envconfig:"PING_DELAY_SECOND"`
+	PingDelay time.Duration `default:"2s" envconfig:"PING_DELAY"`
 
 	KeyPrefix string `default:"" envconfig:"KEY_PREFIX"`
 }
