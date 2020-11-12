@@ -9,7 +9,7 @@
 
 ---
 
-TODO
+![Rabdis](docs/assets/rabdis.gif)
 
 ---
 
