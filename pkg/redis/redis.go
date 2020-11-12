@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	errorConnection = errors.New("Please connect Redis before using it")
+	errorConnection = errors.New("redis not connected")
 )
 
 const (
@@ -56,28 +56,25 @@ type Redis interface {
 	FlushAll() error
 }
 
-// red represents redis
 type red struct {
 	o *Options
 
 	r *redis.Client
 }
 
-// New creates a Redis new instance
+// New creates a new Redis instance
 func New(opts ...Option) (Redis, error) {
 	o, err := newOptions(opts...)
 	if err != nil {
 		return nil, err
 	}
 
-	r := &red{
+	return &red{
 		o: o,
-	}
-
-	return r, nil
+	}, nil
 }
 
-// Connect to the Redis
+// Connect connects Redis
 func (r *red) Connect() {
 	r.connect()
 }
@@ -137,7 +134,7 @@ func (r *red) prefixed(key string) string {
 	return r.o.KeyPrefix + key
 }
 
-// Disconnect to the key value store
+// Disconnect disconnects Redis
 func (r *red) Disconnect() error {
 	if r.r == nil {
 		return nil
@@ -159,7 +156,7 @@ func (r *red) Disconnect() error {
 	return err
 }
 
-// FlushAll flush all [...] -_-
+// FlushAll flushes all [...] -_-
 func (r *red) FlushAll() error {
 	if r.r == nil {
 		return errorConnection
@@ -170,7 +167,7 @@ func (r *red) FlushAll() error {
 
 // SIMPLE
 
-// Increment increment a value
+// Increment increments a value
 func (r *red) Increment(key string) (int64, error) {
 	if r.r == nil {
 		return 0, errorConnection
@@ -179,7 +176,7 @@ func (r *red) Increment(key string) (int64, error) {
 	return r.r.Incr(r.prefixed(key)).Result()
 }
 
-// Decrement increment a value
+// Decrement decrements a value
 func (r *red) Decrement(key string) (int64, error) {
 	if r.r == nil {
 		return 0, errorConnection
@@ -188,7 +185,7 @@ func (r *red) Decrement(key string) (int64, error) {
 	return r.r.Decr(r.prefixed(key)).Result()
 }
 
-// Set a value
+// Set sets a value
 func (r *red) Set(key, value string, expiration time.Duration) error {
 	if r.r == nil {
 		return errorConnection
@@ -197,7 +194,7 @@ func (r *red) Set(key, value string, expiration time.Duration) error {
 	return r.r.Set(r.prefixed(key), value, expiration).Err()
 }
 
-// Get a value
+// Get gets a value
 func (r *red) Get(key string) (string, error) {
 	if r.r == nil {
 		return "", errorConnection
@@ -206,7 +203,7 @@ func (r *red) Get(key string) (string, error) {
 	return r.r.Get(r.prefixed(key)).Result()
 }
 
-// Del a value
+// Del deletes a value
 func (r *red) Del(key string) (int64, error) {
 	if r.r == nil {
 		return 0, errorConnection
@@ -215,7 +212,7 @@ func (r *red) Del(key string) (int64, error) {
 	return r.r.Del(r.prefixed(key)).Result()
 }
 
-// Exists a value
+// Exists checks if a key exists
 func (r *red) Exists(key string) (int64, error) {
 	if r.r == nil {
 		return 0, errorConnection
@@ -224,7 +221,7 @@ func (r *red) Exists(key string) (int64, error) {
 	return r.r.Exists(r.prefixed(key)).Result()
 }
 
-// SearchByKey values
+// SearchByKey searchs by key the values
 func (r *red) SearchByKey(pattern string) ([]string, error) {
 	if r.r == nil {
 		return []string{}, errorConnection
@@ -279,7 +276,7 @@ func (r *red) SetLength(key string) (int64, error) {
 
 // HASH
 
-// HashItemAdd add item to hash
+// HashItemAdd adds item to hash
 func (r *red) HashItemAdd(hash, item, value string) error {
 	if r.r == nil {
 		return errorConnection
@@ -288,7 +285,7 @@ func (r *red) HashItemAdd(hash, item, value string) error {
 	return r.r.HSet(r.prefixed(hash), item, value).Err()
 }
 
-// HashItemExists check if an item hash exists
+// HashItemExists checks if an item hash exists
 func (r *red) HashItemExists(hash, item string) (bool, error) {
 	if r.r == nil {
 		return false, errorConnection
@@ -297,7 +294,7 @@ func (r *red) HashItemExists(hash, item string) (bool, error) {
 	return r.r.HExists(r.prefixed(hash), item).Result()
 }
 
-// HashItemGet get an item into a hash
+// HashItemGet gets an item into a hash
 func (r *red) HashItemGet(hash, item string) (string, error) {
 	if r.r == nil {
 		return "", errorConnection
@@ -306,7 +303,7 @@ func (r *red) HashItemGet(hash, item string) (string, error) {
 	return r.r.HGet(r.prefixed(hash), item).Result()
 }
 
-// HashItemDelete delete an item from a hash
+// HashItemDelete deletes an item from a hash
 func (r *red) HashItemDelete(hash, item string) (int64, error) {
 	return r.r.HDel(r.prefixed(hash), item).Result()
 }
@@ -331,7 +328,7 @@ func (r *red) HashLength(hash string) (int64, error) {
 
 // SCORE
 
-// ScoreItemAdd add item to score key
+// ScoreItemAdd adds item to score key
 func (r *red) ScoreItemAdd(key string, score float64, member string) error {
 	if r.r == nil {
 		return errorConnection
@@ -343,7 +340,7 @@ func (r *red) ScoreItemAdd(key string, score float64, member string) error {
 	}).Err()
 }
 
-// ScoreItemCount count item from score key
+// ScoreItemCount counts item from score key
 func (r *red) ScoreItemCount(key string, minScore, maxScore string) (float64, error) {
 	if r.r == nil {
 		return 0, errorConnection
