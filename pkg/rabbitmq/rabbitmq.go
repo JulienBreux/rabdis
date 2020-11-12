@@ -135,9 +135,13 @@ func (r *rabbitmq) Disconnect() error {
 }
 
 // OnMessage stores the on message receive handlers
-// TODO: Add error management
 func (r *rabbitmq) OnMessage(h message.OnMessageHandler, opts ...consumer.Option) error {
-	c, _ := consumer.New(h, opts...)
+	c, err := consumer.New(h, opts...)
+	if err != nil {
+		return err
+	}
+
 	r.consumers = append(r.consumers, c)
+
 	return nil
 }
