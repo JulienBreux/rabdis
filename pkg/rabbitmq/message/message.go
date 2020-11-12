@@ -24,15 +24,7 @@ type message struct {
 	delivery amqp.Delivery
 }
 
-// New creates a new message instance
-func New(rawBody []byte, headers *map[string]string, delivery amqp.Delivery) Message {
-	return &message{
-		headers:  headers,
-		body:     body.New(rawBody),
-		delivery: delivery,
-	}
-}
-
+// NewFromDelivery creates a new message instance from delivery
 func NewFromDelivery(delivery amqp.Delivery) Message {
 	headers := make(map[string]string)
 	for k, v := range delivery.Headers {
