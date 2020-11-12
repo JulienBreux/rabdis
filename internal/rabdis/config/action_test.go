@@ -46,7 +46,7 @@ conditions:
 `)
 	assert.NoError(t, yaml.Unmarshal(in, &a))
 	assert.Equal(t, a.Key, "key")
-	assert.Equal(t, a.Action, "delete")
+	assert.Equal(t, a.Action, config.ActionDelete)
 }
 
 func TestActionUnmarshalYAMLCustomError(t *testing.T) {
