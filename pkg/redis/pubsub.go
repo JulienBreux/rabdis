@@ -1,5 +1,7 @@
 package redis
 
+import "github.com/go-redis/redis"
+
 // PubSubPublish helps to publish
 func (r *red) PubSubPublish(channel string, message string) error {
 	if r.r == nil {
@@ -33,18 +35,17 @@ func (r *red) PubSubSubscribe(channel string, message chan<- string) error {
 		return err
 	}
 
-	msgChan := pubsub.Channel()
-	go func() {
-		for {
-			msg, ok := <-msgChan
-			if !ok {
-				r.o.Logger.Debug("PubSubSubscribe reading failed")
-				break
-			}
-
-			message <- msg.Payload
-		}
-	}()
+	go r.pubSub(pubsub.Channel(), message)
 
 	return nil
+}
+
+func (r *red) pubSub(msgChan <-chan *redis.Message, message chan<- string) {
+	for {
+		if msg, ok := <-msgChan; ok {
+			message <- msg.Payload
+			break
+		}
+		r.o.Logger.Debug("PubSubSubscribe reading failed")
+	}
 }
