@@ -1,11 +1,12 @@
 # 🐰 Rabdis – Play with redis keys from RabbitMQ messages
 
-[![Build status](https://github.com/julienbreux/rabdis/workflows/Builds and%20tests%20Go/badge.svg)](https://github.com/JulienBreux/rabdis/actions)
+[![Build status](https://github.com/julienbreux/rabdis/workflows/Builds%20and%20tests%20Go/badge.svg)](https://github.com/JulienBreux/rabdis/actions)
 [![Go Report Card](https://goreportcard.com/badge/github.com/JulienBreux/rabdis)](https://goreportcard.com/report/github.com/JulienBreux/rabdis)
 [![Codebeat badge](https://codebeat.co/badges/092125d9-0d0a-4fdf-a535-281bdfde0a65)](https://codebeat.co/projects/github-com-julienbreux-rabdis-main)
 [![GoDoc](https://godoc.org/github.com/JulienBreux/rabdis?status.svg)](http://godoc.org/github.com/JulienBreux/rabdis)
 [![GitHub tag](https://img.shields.io/github/tag/JulienBreux/rabdis.svg)](Tag)
 [![Go version](https://img.shields.io/badge/go-v1.15-blue)](https://golang.org/dl/#stable)
+
 ---
 
 TODO
