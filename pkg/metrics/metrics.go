@@ -12,7 +12,7 @@ import (
 
 // Metrics represents the Metrics interface
 type Metrics interface {
-	Start() error
+	Start()
 	Stop() error
 }
 
@@ -52,7 +52,7 @@ func New(opts ...Option) (Metrics, error) {
 }
 
 // Start starts metrics server
-func (m *metrics) Start() error {
+func (m *metrics) Start() {
 	m.o.Logger.Info("metrics server: starting")
 
 	go m.start()
@@ -62,8 +62,6 @@ func (m *metrics) Start() error {
 		logger.F("port", m.o.Port),
 		logger.F("route", m.o.Route),
 	) // Fake
-
-	return nil
 }
 
 func (m *metrics) start() {
