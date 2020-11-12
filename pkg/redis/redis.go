@@ -100,26 +100,24 @@ func (r *red) connect() {
 		attempts++
 		time.Sleep(b.Duration())
 	}
-	r.watchConnectCloseAndReconnect()
+	go r.watchConnectCloseAndReconnect()
 }
 
 func (r *red) watchConnectCloseAndReconnect() {
-	go func() {
-		for {
-			if _, err := r.r.Ping().Result(); err == nil {
-				r.o.Logger.Debug("redis: ping ok")
-				time.Sleep(r.o.PingDelay)
-				continue
-			}
-
-			r.r = nil
-
-			r.o.Logger.Warn("redis: disconnected")
-
-			r.connect()
-			break
+	for {
+		if _, err := r.r.Ping().Result(); err == nil {
+			r.o.Logger.Debug("redis: ping ok")
+			time.Sleep(r.o.PingDelay)
+			continue
 		}
-	}()
+
+		r.r = nil
+
+		r.o.Logger.Warn("redis: disconnected")
+
+		r.connect()
+		break
+	}
 }
 
 func (r *red) config() *redis.Options {
