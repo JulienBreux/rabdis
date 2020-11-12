@@ -1,7 +1,5 @@
 package package
 
-import (
-	"os"
-)
+import "os"
 
 var shutdownSignals = []os.Signal{os.Interrupt}
