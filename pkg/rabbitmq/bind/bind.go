@@ -5,7 +5,7 @@ import (
 	"github.com/julienbreux/rabdis/pkg/rabbitmq/queue"
 )
 
-// Bind represents the bin
+// Bind represents the binding between exchange and queue
 type Bind struct {
 	Exchange exchange.Exchange `yaml:"-"`
 	Queue    queue.Queue       `yaml:"-"`
