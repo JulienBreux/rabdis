@@ -85,6 +85,7 @@ func (ch *Channel) Bind(b bind.Bind) error {
 }
 
 // Consume consumes a queue in the channel
+// TODO: create consumer.Consume struct for properties/options
 func (ch *Channel) Consume(q queue.Queue, autoAck bool) (<-chan amqp.Delivery, error) {
 	return ch.channel.Consume(
 		q.Name,
@@ -96,11 +97,3 @@ func (ch *Channel) Consume(q queue.Queue, autoAck bool) (<-chan amqp.Delivery, e
 		nil,     // args
 	)
 }
-
-// Publish publishes in the channel
-// func (ch *Channel) Publish(exchange, key string, message amqp.Publishing) error {
-// 	if ch.channel == nil {
-// 		return errors.New("Channel doesn't exists")
-// 	}
-// 	return ch.channel.Publish(exchange, key, false, false, message)
-// }
