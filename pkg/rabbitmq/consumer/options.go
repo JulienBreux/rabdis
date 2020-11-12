@@ -6,15 +6,15 @@ import (
 	"github.com/julienbreux/rabdis/pkg/rabbitmq/queue"
 )
 
-// Options  represents message options
+// Option represents a Consumer option
+type Option func(*Options)
+
+// Options represents Consumer options
 type Options struct {
 	Exchange exchange.Exchange
 	Queue    queue.Queue
 	Bind     bind.Bind
 }
-
-// Option represents a message option
-type Option func(*Options)
 
 func newOptions(opts ...Option) (*Options, error) {
 	opt := Options{}
@@ -26,21 +26,21 @@ func newOptions(opts ...Option) (*Options, error) {
 	return &opt, nil
 }
 
-// Exchange sets exchange option
+// Exchange returns exchange option
 func Exchange(opt exchange.Exchange) Option {
 	return func(o *Options) {
 		o.Exchange = opt
 	}
 }
 
-// Queue sets queue option
+// Queue returns queue option
 func Queue(opt queue.Queue) Option {
 	return func(o *Options) {
 		o.Queue = opt
 	}
 }
 
-// Bind sets bind option
+// Bind returns bind option
 func Bind(opt bind.Bind) Option {
 	return func(o *Options) {
 		o.Bind = opt

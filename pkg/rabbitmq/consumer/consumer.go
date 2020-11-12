@@ -13,27 +13,24 @@ type Consumer interface {
 	Start(c *amqp.Connection) error
 }
 
-// consumer represents a consumer
 type consumer struct {
 	o *Options
 
 	h message.OnMessageHandler
 }
 
-// New creates a new consumer instance
+// New creates a new Consumer instance
 func New(h message.OnMessageHandler, opts ...Option) (Consumer, error) {
 	o, err := newOptions(opts...)
 	if err != nil {
 		return nil, err
 	}
 
-	r := &consumer{
+	return &consumer{
 		o: o,
 
 		h: h,
-	}
-
-	return r, nil
+	}, nil
 }
 
 // Start starts the consumer
@@ -77,6 +74,7 @@ func (c *consumer) consume(deliveryChan <-chan amqp.Delivery) error {
 	go func() {
 		for d := range deliveryChan {
 			go func(d amqp.Delivery) {
+				// TODO: add error management
 				_ = c.h(message.NewFromDelivery(d))
 			}(d)
 		}
