@@ -64,16 +64,3 @@ func Route(route string) Option {
 		o.Route = route
 	}
 }
-
-// http.Handle("/metrics", promhttp.Handler())
-// go func() {
-// 	logrus.
-// 		WithField("adminAddress", config.AdminAddr()).
-// 		Debugf("Server admin running on %s", config.AdminAddr())
-
-// 	err := http.ListenAndServe(config.AdminAddr(), nil)
-// 	logrus.
-// 		WithField("adminAddress", config.AdminAddr()).
-// 		WithError(err).
-// 		Fatal("Server admin run failed")
-// }()
