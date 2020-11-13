@@ -4,20 +4,20 @@ package exchange
 type Type string
 
 const (
-	// Type "direct" delivers messages to queues based on
+	// TypeDirect delivers messages to queues based on
 	// the message routing key.
 	TypeDirect Type = "direct"
 
-	// Type "fanout" routes messages to all of the queues
+	// TypeFanout routes messages to all of the queues
 	// that are bound to it and the routing key is ignored.
 	TypeFanout Type = "fanout"
 
-	// Type "headers" is designed for routing on multiple
+	// TypeHeaders is designed for routing on multiple
 	// attributes that are more easily expressed as message
 	// headers than a routing key.
 	TypeHeaders Type = "headers"
 
-	// Type "topic" route messages to one or many queues
+	// TypeTopic route messages to one or many queues
 	// based on matching between a message routing key and
 	// the pattern that was used to bind a queue to an
 	// exchange.

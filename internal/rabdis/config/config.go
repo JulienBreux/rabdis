@@ -9,6 +9,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// Config represents the config file structured
 type Config struct {
 	Version string `yaml:"version"`
 
