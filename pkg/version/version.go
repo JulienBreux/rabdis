@@ -13,7 +13,7 @@ var (
 	Version = "dev"
 	// Commit is the commit hash this build was created from
 	Commit = "n/a"
-	// Date is the time when this build was created
+	// RawDate is the time when this build was created in raw string
 	RawDate = "n/a"
 )
 
