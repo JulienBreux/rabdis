@@ -219,7 +219,7 @@ func (r *red) Exists(key string) (int64, error) {
 	return r.r.Exists(r.prefixed(key)).Result()
 }
 
-// SearchByKey searchs by key the values
+// SearchByKey searches by key the values
 func (r *red) SearchByKey(pattern string) ([]string, error) {
 	if r.r == nil {
 		return []string{}, errorConnection
