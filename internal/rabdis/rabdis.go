@@ -103,10 +103,9 @@ func (r *rabdis) Start() {
 }
 
 func (r *rabdis) init() {
-	// TODO: replace ruleIndex by using context
-	for ruleIndex, rule := range r.c.Rules {
+	for _, rule := range r.c.Rules {
 		r.rabbitMQ.OnMessage(
-			r.messageHandler(rule, ruleIndex),
+			r.messageHandler(rule),
 			consumer.Exchange(rule.RabbitMQ.Exchange),
 			consumer.Queue(rule.RabbitMQ.Queue),
 			consumer.Bind(rule.RabbitMQ.Bind),

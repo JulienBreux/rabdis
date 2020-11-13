@@ -7,14 +7,14 @@ import (
 )
 
 // TODO: replace ruleIndex by using context
-func (r *rabdis) messageHandler(rule config.Rule, ruleIndex int) message.OnMessageHandler {
+func (r *rabdis) messageHandler(rule config.Rule) message.OnMessageHandler {
 	return func(msg message.Message) error {
 		r.o.Logger.Debug(
 			"rabdis: OnMessageHandler triggered",
 			logger.F("message", msg),
 		)
 
-		for actionIndex, a := range rule.Redis.Actions {
+		for _, a := range rule.Redis.Actions {
 			// Check condition
 			a.SetContent(msg.Body().Raw())
 			if !a.ConditionsCheck() {
@@ -36,7 +36,7 @@ func (r *rabdis) messageHandler(rule config.Rule, ruleIndex int) message.OnMessa
 				)
 				continue
 			}
-			_, _ = r.action(a.Action, key, actionIndex, ruleIndex)
+			_, _ = r.action(a.Action, key)
 		}
 		_ = msg.Ack()
 
@@ -45,8 +45,8 @@ func (r *rabdis) messageHandler(rule config.Rule, ruleIndex int) message.OnMessa
 }
 
 // action proceeds to Redis action
-// TODO: replace actionIndex and ruleIndex by using context
-func (r *rabdis) action(a config.ActionRedis, key string, actionIndex, ruleIndex int) (res int64, err error) {
+// TODO: add error context
+func (r *rabdis) action(a config.ActionRedis, key string) (res int64, err error) {
 	switch a {
 	case config.ActionDelete:
 		res, err = r.redis.Del(key)
