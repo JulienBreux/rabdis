@@ -13,6 +13,8 @@ import (
 	"github.com/julienbreux/rabdis/pkg/version"
 )
 
+const numServices = 3
+
 // Rabdis represents the Rabdis interface
 type Rabdis interface {
 	SetRabbitMQ(rabbitmq.RabbitMQ)
@@ -114,7 +116,7 @@ func (r *rabdis) init() {
 }
 
 func (r *rabdis) start() {
-	r.wg.Add(3)
+	r.wg.Add(numServices)
 
 	go r.rabbitMQ.Connect()
 	go r.redis.Connect()
