@@ -31,7 +31,7 @@ func Print(w io.Writer, f Format, v interface{}, c Callback) {
 		if b, err := ToYAML(v); err == nil {
 			fmt.Fprint(w, string(b))
 		}
-	default:
+	case CUSTOM:
 		c(w)
 	}
 }
@@ -43,6 +43,7 @@ func StringToFormat(f string) Format {
 		return JSON
 	case "yaml":
 		return YAML
+	default:
+		return CUSTOM
 	}
-	return CUSTOM
 }
