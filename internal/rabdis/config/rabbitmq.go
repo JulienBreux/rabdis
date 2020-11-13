@@ -8,7 +8,7 @@ import (
 	"github.com/julienbreux/rabdis/pkg/rabbitmq/queue"
 )
 
-// RabbitMQRuleConfig represents a RabbitMQ section
+// RabbitMQ represents a RabbitMQ section
 type RabbitMQ struct {
 	ExchangeName string `yaml:"exchangeName"`
 	RoutingKey   string `yaml:"routingKey"`
