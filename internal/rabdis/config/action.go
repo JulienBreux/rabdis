@@ -53,7 +53,7 @@ func (a *Action) FinalKey() (string, error) {
 			return "", fmt.Errorf("variable %s is empty in action %s", varName[0], a.Action)
 		}
 		fmt.Printf("%s  /  %s\n", key, res.String())
-		key = strings.Replace(key, varName[0], res.String(), -1)
+		key = strings.ReplaceAll(key, varName[0], res.String())
 	}
 
 	return key, nil
