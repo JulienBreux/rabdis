@@ -17,7 +17,7 @@ type Options struct {
 	AutoAck  bool
 }
 
-func newOptions(opts ...Option) (*Options, error) {
+func newOptions(opts ...Option) *Options {
 	opt := Options{
 		AutoAck: false,
 	}
@@ -26,7 +26,7 @@ func newOptions(opts ...Option) (*Options, error) {
 		o(&opt)
 	}
 
-	return &opt, nil
+	return &opt
 }
 
 // Exchange returns exchange option

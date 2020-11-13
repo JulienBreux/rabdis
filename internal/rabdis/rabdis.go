@@ -102,11 +102,10 @@ func (r *rabdis) Start() {
 	r.stop()
 }
 
-// TODO: manage RabbitMQ hook error
 func (r *rabdis) init() {
 	// TODO: replace ruleIndex by using context
 	for ruleIndex, rule := range r.c.Rules {
-		_ = r.rabbitMQ.OnMessage(
+		r.rabbitMQ.OnMessage(
 			r.messageHandler(rule, ruleIndex),
 			consumer.Exchange(rule.RabbitMQ.Exchange),
 			consumer.Queue(rule.RabbitMQ.Queue),

@@ -18,17 +18,14 @@ type consumer struct {
 }
 
 // New creates a new Consumer instance
-func New(h message.OnMessageHandler, opts ...Option) (Consumer, error) {
-	o, err := newOptions(opts...)
-	if err != nil {
-		return nil, err
-	}
+func New(h message.OnMessageHandler, opts ...Option) Consumer {
+	o := newOptions(opts...)
 
 	return &consumer{
 		o: o,
 
 		h: h,
-	}, nil
+	}
 }
 
 // Start starts the consumer

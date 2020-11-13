@@ -17,7 +17,7 @@ type RabbitMQ interface {
 	Connect()
 	Disconnect() error
 
-	OnMessage(message.OnMessageHandler, ...consumer.Option) error
+	OnMessage(message.OnMessageHandler, ...consumer.Option)
 }
 
 // rabbitmq represents the internal rabbitmq structure
@@ -130,13 +130,7 @@ func (r *rabbitmq) Disconnect() error {
 }
 
 // OnMessage stores the on message receive handlers
-func (r *rabbitmq) OnMessage(h message.OnMessageHandler, opts ...consumer.Option) error {
-	c, err := consumer.New(h, opts...)
-	if err != nil {
-		return err
-	}
-
+func (r *rabbitmq) OnMessage(h message.OnMessageHandler, opts ...consumer.Option) {
+	c := consumer.New(h, opts...)
 	r.consumers = append(r.consumers, c)
-
-	return nil
 }
