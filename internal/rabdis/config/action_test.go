@@ -22,6 +22,7 @@ var conditionsTests = []struct {
 
 func TestActionsConditions(t *testing.T) {
 	for _, tt := range conditionsTests {
+		tt := tt
 		t.Run(string(tt.content), func(t *testing.T) {
 			a := &config.Action{
 				Key:        "",
@@ -77,6 +78,7 @@ var finalKeyTests = []struct {
 
 func TestFinalKey(t *testing.T) {
 	for _, tt := range finalKeyTests {
+		tt := tt
 		t.Run(string(tt.content), func(t *testing.T) {
 			a := &config.Action{
 				Key:    tt.key,
