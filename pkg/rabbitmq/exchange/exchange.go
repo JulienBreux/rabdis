@@ -1,34 +1,34 @@
 package exchange
 
-// ExchangeType represents an exchange type
-type ExchangeType string
+// Type represents an exchange type
+type Type string
 
 const (
 	// Type "direct" delivers messages to queues based on
 	// the message routing key.
-	TypeDirect ExchangeType = "direct"
+	TypeDirect Type = "direct"
 
 	// Type "fanout" routes messages to all of the queues
 	// that are bound to it and the routing key is ignored.
-	TypeFanout ExchangeType = "fanout"
+	TypeFanout Type = "fanout"
 
 	// Type "headers" is designed for routing on multiple
 	// attributes that are more easily expressed as message
 	// headers than a routing key.
-	TypeHeaders ExchangeType = "headers"
+	TypeHeaders Type = "headers"
 
 	// Type "topic" route messages to one or many queues
 	// based on matching between a message routing key and
 	// the pattern that was used to bind a queue to an
 	// exchange.
-	TypeTopic ExchangeType = "topic"
+	TypeTopic Type = "topic"
 )
 
 // Exchange represents an exchange
 type Exchange struct {
 	Name string `yaml:"name"`
 
-	Type ExchangeType `yaml:"type"`
+	Type Type `yaml:"type"`
 
 	Durable    bool `yaml:"durable"`
 	AutoDelete bool `yaml:"autoDelete"`
