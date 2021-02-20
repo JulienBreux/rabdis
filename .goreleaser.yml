@@ -31,7 +31,7 @@ changelog:
       - '^docs:'
 brews:
   - name: rabdis
-    github:
+    tap:
       owner: JulienBreux
       name: rabdis-homebrew
     commit_author:
