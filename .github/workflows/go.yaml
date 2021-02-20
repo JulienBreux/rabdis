@@ -2,8 +2,8 @@
 name: Builds and tests Go
 
 on:
-- push
-- pull_request
+  - push
+  - pull_request
 
 jobs:
   build:
