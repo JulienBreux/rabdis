@@ -5,7 +5,8 @@ before:
     - go mod download
     - go generate ./...
 builds:
-  - env:
+  - main: ./cmd/rabdis/main.go
+    env:
       - CGO_ENABLED=0
     goos:
       - linux
