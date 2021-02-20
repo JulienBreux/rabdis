@@ -5,7 +5,7 @@
 [![Codebeat badge](https://codebeat.co/badges/092125d9-0d0a-4fdf-a535-281bdfde0a65)](https://codebeat.co/projects/github-com-julienbreux-rabdis-main)
 [![GoDoc](https://godoc.org/github.com/JulienBreux/rabdis?status.svg)](http://godoc.org/github.com/JulienBreux/rabdis)
 [![GitHub tag](https://img.shields.io/github/tag/JulienBreux/rabdis.svg)](Tag)
-[![Go version](https://img.shields.io/badge/go-v1.15-blue)](https://golang.org/dl/#stable)
+[![Go version](https://img.shields.io/badge/go-v1.16-blue)](https://golang.org/dl/#stable)
 
 ---
 

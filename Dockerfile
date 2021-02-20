@@ -1,5 +1,5 @@
 # BUILD
-FROM golang:1.15-alpine3.12 as build
+FROM golang:1.16-alpine3.13 as build
 
 ARG VERSION=dev
 ARG COMMIT=n/a
@@ -26,7 +26,7 @@ RUN go build \
         -o ./bin/rabdis ./cmd/rabdis
 
 ## IMAGE
-FROM alpine:3.12
+FROM alpine:3.13
 
 RUN apk --no-cache --no-progress add ca-certificates tzdata \
     && update-ca-certificates \
