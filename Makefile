@@ -26,7 +26,7 @@ build: clean
 	go build -o ./bin ./cmd/rabdis
 
 build-image:
-	docker build -t julienbreux/rabdis:latest .
+	docker build -t ghcr.io/julienbreux/rabdis:latest .
 
 run: build
 	./bin/rabdis
