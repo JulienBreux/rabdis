@@ -32,7 +32,7 @@ changelog:
       - '^docs:'
 dockers:
   - image_templates:
-      # - 'julienbreux/rabdis:{{ .Tag }}-amd64'
+      - 'julienbreux/rabdis:{{ .Tag }}-amd64'
       - 'ghcr.io/julienbreux/rabdis:{{ .Tag }}-amd64'
     dockerfile: Dockerfile
     use_buildx: true
@@ -54,12 +54,12 @@ docker_manifests:
   - name_template: 'ghcr.io/julienbreux/rabdis:latest'
     image_templates:
       - 'ghcr.io/julienbreux/rabdis:{{ .Version }}-amd64'
-  # - name_template: 'julienbreux/rabdis:{{ .Tag }}'
-  #   image_templates:
-  #     - 'julienbreux/rabdis:{{ .Tag }}-amd64'
-  # - name_template: 'julienbreux/rabdis:latest'
-  #   image_templates:
-  #     - 'julienbreux/rabdis:{{ .Tag }}-amd64'
+  - name_template: 'julienbreux/rabdis:{{ .Tag }}'
+    image_templates:
+      - 'julienbreux/rabdis:{{ .Tag }}-amd64'
+  - name_template: 'julienbreux/rabdis:latest'
+    image_templates:
+      - 'julienbreux/rabdis:{{ .Tag }}-amd64'
 brews:
   - name: rabdis
     tap:
