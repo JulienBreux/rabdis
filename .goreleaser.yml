@@ -34,8 +34,6 @@ dockers:
   - image_templates:
       - 'julienbreux/rabdis:{{ .Tag }}-amd64'
       - 'ghcr.io/julienbreux/rabdis:{{ .Tag }}-amd64'
-    binaries:
-      - rabdis
     dockerfile: Dockerfile
     use_buildx: true
     build_flag_templates:
