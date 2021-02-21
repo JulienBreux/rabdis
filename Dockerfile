@@ -6,10 +6,10 @@ RUN addgroup -g 1000 -S rabdis && \
     mkdir -p /rabdis && \
     chown -R rabdis:rabdis /rabdis
 
-WORKDIR /rabidis
+WORKDIR /rabdis
 
 USER rabdis:rabdis
 
 EXPOSE 9090
 
-ENTRYPOINT ["/rabidis/rabdis"]
+ENTRYPOINT ["/rabdis/rabdis"]
