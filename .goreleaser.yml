@@ -33,7 +33,9 @@ changelog:
 dockers:
   - image_templates:
       - 'julienbreux/rabdis:{{ .Tag }}'
+      - 'julienbreux/rabdis:latest'
       - 'ghcr.io/julienbreux/rabdis:{{ .Tag }}'
+      - 'ghcr.io/julienbreux/rabdis:latest'
     dockerfile: Dockerfile
     use_buildx: true
     build_flag_templates:
