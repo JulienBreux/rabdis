@@ -1,15 +1,15 @@
 ARG ALPINE_VERSION=3.13
 FROM alpine:${ALPINE_VERSION}
 
-# RUN addgroup -g 1000 -S rabdis && \
-#     adduser -u 1000 -S rabdis -G rabdis && \
-#     mkdir -p /rabdis && \
-#     chown -R rabdis:rabdis /rabdis
+COPY rabdis /bin/rabdis
 
-# WORKDIR /rabdis
+RUN addgroup -g 1000 -S rabdis && \
+    adduser -u 1000 -S rabdis -G rabdis && \
+    mkdir -p /rabdis && \
+    chown rabdis:rabdis /bin/rabdis
 
-# USER rabdis:rabdis
+USER rabdis:rabdis
 
 EXPOSE 9090
 
-# ENTRYPOINT ["/rabdis/rabdis"]
+ENTRYPOINT ["/bin/rabdis"]
