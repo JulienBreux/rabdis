@@ -13,16 +13,19 @@ x (A) 2020-11-10,2020-11-11 Manage template in Redis actions key +MVP @JulienBre
 x (A) 2020-11-11,2020-11-11 Manage redis actions +MVP @JulienBreux
 x (A) 2020-11-11, 2020-11-11 Type redis action +MVP @JulienBreux
 x (A) 2020-11-11 Add route /metrics +MVP @JulienBreux
-x (B) Create docker image +MVP @JulienBreux
-x (B) Create Helm Chart +MVP @JulienBreux
-(B) Create functional testing +MVP @JulienBreux
+x (B) 2021-02-20,2021-02-22 Create docker image +MVP @JulienBreux
+x (B) 2021-02-22,2021-02-22 Add Github actions to release +MVP @JulienBreux
 
-(A) 2020-11-11, Manage redis disconnection (non-ack) +MVP @JulienBreux
+(B) 2021-02-23,2021-02- Create Helm Chart +MVP @JulienBreux
+
+(A) Manage redis disconnection (non-ack) +MVP @JulienBreux
+(B) Create functional testing +MVP @JulienBreux
 (B) Documentation asciinema +doc +MVP @JulienBreux
 (B) Documentation website +doc +MVP @JulienBreux
-(B) Add missing unit tests for pkg/metrics @JulienBreux
-(B) Add missing unit tests for pkg/redis @JulienBreux
-(B) Add missing unit tests for pkg/rabbitmq @JulienBreux
+
+(B) Add missing unit tests for pkg/metrics +tests @JulienBreux
+(B) Add missing unit tests for pkg/redis +tests @JulienBreux
+(B) Add missing unit tests for pkg/rabbitmq +tests @JulienBreux
 
 (C) Add more metrics (messages ok/nok, actions ok/nok) +feature +action @JulienBreux
 (C) Add action conditions +feature +action @JulienBreux
