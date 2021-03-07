@@ -15,6 +15,8 @@ spec:
     metadata:
       {{- with .Values.podAnnotations }}
       annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
@@ -46,6 +48,29 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+            - name: RABDIS_CONFIG_FILE
+              value: /config/rabdis.yaml
+            - name: RABBITMQ_HOST
+              value: {{ .Values.rabbitmq.host | squote }}
+            - name: RABBITMQ_PORT
+              value: {{ .Values.rabbitmq.port | squote }}
+            - name: RABBITMQ_USER
+              value: {{ .Values.rabbitmq.user | squote }}
+            - name: RABBITMQ_CONN_TIMEOUT
+              value: {{ .Values.rabbitmq.connTimeout | squote }}
+            - name: REDIS_HOST
+              value: {{ .Values.redis.host | squote }}
+            - name: REDIS_PORT
+              value: {{ .Values.redis.port | squote }}
+            - name: REDIS_DATABASE
+              value: {{ .Values.redis.database | squote }}
+            - name: REDIS_PING_DELAY
+              value: {{ .Values.redis.pingDelay | squote }}
+            - name: REDIS_KEY_PREFIX
+              value: {{ .Values.redis.keyPrefix | squote }}
+          envFrom:
+            - secretRef:
+                name: {{ include "core-service.fullname" . }}
           ports:
             - name: http-health
               containerPort: 8181
@@ -62,6 +87,9 @@ spec:
               port: http-health
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: {{ include "rabdis.fullname" . }}
+              mountPath: /config/rabdis.yaml
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

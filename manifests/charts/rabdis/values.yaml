@@ -4,11 +4,11 @@ image:
   repository: julienbreux/rabdis
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: ''
 
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: ''
+fullnameOverride: ''
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -17,7 +17,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: ''
 
 podAnnotations: {}
 
@@ -62,8 +62,21 @@ tolerations: []
 
 affinity: {}
 
+rules: []
+
 rabbitmq:
   userInternal: false
+  host: 'localhost'
+  port: 5672
+  user: guest
+  password: guest
+  connTimeout: 10
 
 redis:
   useInternal: false
+  host: 'localhost'
+  port: 6379
+  database: 0
+  password: ''
+  pingDelay: 2s
+  keyPrefix: ''
