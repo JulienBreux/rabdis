@@ -19,6 +19,9 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ''
 
+serviceMonitor:
+  enabled: true
+
 podAnnotations: {}
 
 podSecurityContext:
@@ -65,7 +68,7 @@ affinity: {}
 rules: []
 
 rabbitmq:
-  userInternal: false
+  useInternal: false
   host: 'localhost'
   port: 5672
   user: guest

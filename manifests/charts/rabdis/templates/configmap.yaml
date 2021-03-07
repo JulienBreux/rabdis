@@ -4,8 +4,8 @@ metadata:
   name: {{ include "rabdis.fullname" . }}
   labels:
     {{- include "rabdis.labels" . | nindent 4 }}
-spec:
-  rabdis.yml: |
+data:
+  rabdis.yaml: |
     ---
     version: 1
 

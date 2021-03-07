@@ -70,7 +70,7 @@ spec:
               value: {{ .Values.redis.keyPrefix | squote }}
           envFrom:
             - secretRef:
-                name: {{ include "core-service.fullname" . }}
+                name: {{ include "rabdis.fullname" . }}
           ports:
             - name: http-health
               containerPort: 8181

@@ -15,8 +15,7 @@ x (A) 2020-11-11, 2020-11-11 Type redis action +MVP @JulienBreux
 x (A) 2020-11-11 Add route /metrics +MVP @JulienBreux
 x (B) 2021-02-20,2021-02-22 Create docker image +MVP @JulienBreux
 x (B) 2021-02-22,2021-02-22 Add Github actions to release +MVP @JulienBreux
-
-(B) 2021-02-23,2021-02- Create Helm Chart +MVP @JulienBreux
+x (B) 2021-02-23,2021-03-07 Create Helm Chart +MVP @JulienBreux
 
 (A) Manage redis disconnection (non-ack) +MVP @JulienBreux
 (B) Create functional testing +MVP @JulienBreux
