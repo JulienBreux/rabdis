@@ -6,6 +6,7 @@ import (
 
 	"github.com/julienbreux/rabdis/internal/rabdis"
 	"github.com/julienbreux/rabdis/internal/rabdis/command/version"
+	"github.com/julienbreux/rabdis/pkg/health"
 	"github.com/julienbreux/rabdis/pkg/logger"
 	"github.com/julienbreux/rabdis/pkg/metrics"
 	"github.com/julienbreux/rabdis/pkg/rabbitmq"
@@ -76,6 +77,15 @@ func RunCmdRoot(cmd *cobra.Command, args []string) {
 		log.Fatal("metrics: configuration failed", logger.E(err))
 	}
 	rbds.SetMetrics(met)
+
+	// Health
+	hlth, err := health.New(
+		health.Logger(lgr),
+	)
+	if err != nil {
+		log.Fatal("health: configuration failed", logger.E(err))
+	}
+	rbds.SetHealth(hlth)
 
 	// Let's go baby!
 	rbds.Start()

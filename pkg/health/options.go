@@ -1,4 +1,4 @@
-package metrics
+package health
 
 import (
 	"github.com/julienbreux/rabdis/pkg/logger"
@@ -6,17 +6,17 @@ import (
 )
 
 // ConfigPrefix defines the configuration prefix
-var ConfigPrefix = "METRICS"
+var ConfigPrefix = "HEALTH"
 
-// Option represents a Metrics option
+// Option represents a Health option
 type Option func(*Options)
 
-// Options represents the Metrics options
+// Options represents the Health options
 type Options struct {
 	Logger logger.Logger `ignored:"true" json:"-"`
 
-	Port  int    `default:"9090" envconfig:"PORT"`
-	Route string `default:"/metrics" envconfig:"ROUTE"`
+	Port  int    `default:"8080" envconfig:"PORT"`
+	Route string `default:"/health" envconfig:"ROUTE"`
 }
 
 func newOptions(opts ...Option) (*Options, error) {

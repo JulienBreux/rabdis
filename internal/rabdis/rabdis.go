@@ -4,6 +4,7 @@ import (
 	"sync"
 
 	"github.com/julienbreux/rabdis/internal/rabdis/config"
+	"github.com/julienbreux/rabdis/pkg/health"
 	"github.com/julienbreux/rabdis/pkg/logger"
 	"github.com/julienbreux/rabdis/pkg/metrics"
 	"github.com/julienbreux/rabdis/pkg/rabbitmq"
@@ -20,6 +21,7 @@ type Rabdis interface {
 	SetRabbitMQ(rabbitmq.RabbitMQ)
 	SetRedis(redis.Redis)
 	SetMetrics(metrics.Metrics)
+	SetHealth(health.Health)
 
 	Start()
 }
@@ -36,6 +38,7 @@ type rabdis struct {
 	rabbitMQ rabbitmq.RabbitMQ
 	redis    redis.Redis
 	metrics  metrics.Metrics
+	health   health.Health
 }
 
 // New creates a new Rabdis instance
@@ -72,6 +75,11 @@ func (r *rabdis) SetRedis(rds redis.Redis) {
 // SetMetrics sets Metrics
 func (r *rabdis) SetMetrics(mts metrics.Metrics) {
 	r.metrics = mts
+}
+
+// SetHealth sets Health
+func (r *rabdis) SetHealth(hlth health.Health) {
+	r.health = hlth
 }
 
 // Start starts Rabdis
@@ -119,6 +127,7 @@ func (r *rabdis) start() {
 	go r.rabbitMQ.Connect()
 	go r.redis.Connect()
 	go r.metrics.Start()
+	go r.health.Start()
 
 	go func() {
 		r.wg.Wait()
@@ -134,6 +143,7 @@ func (r *rabdis) stop() {
 	_ = r.rabbitMQ.Disconnect()
 	_ = r.redis.Disconnect()
 	_ = r.metrics.Stop()
+	_ = r.health.Stop()
 
 	r.o.Logger.Info("rabdis: stopped")
 }
