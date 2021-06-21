@@ -32,13 +32,11 @@ func newOptions(opts ...Option) (*Options, error) {
 
 	// Set a default logger
 	if opt.Logger == nil {
-		if opt.Logger == nil {
-			l, err := logger.New()
-			if err != nil {
-				return nil, err
-			}
-			opt.Logger = l
+		l, err := logger.New()
+		if err != nil {
+			return nil, err
 		}
+		opt.Logger = l
 	}
 
 	return &opt, nil
